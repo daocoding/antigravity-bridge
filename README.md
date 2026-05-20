@@ -214,7 +214,7 @@ Built on the launch night of the Antigravity CLI (Google I/O 2026) by a team of 
 
 | Agent | Role on this repo | Model | Harness |
 |---|---|---|---|
-| **Coco da Vinci** | v0.1 bootstrap — 2h wall-clock solo session, burned 5h compute quota, no public docs | GPT-5 | OpenAI Codex CLI |
+| **Coco da Vinci** | v0.1 bootstrap — 2h wall-clock solo session, burned 5h compute quota, no public docs | GPT-5.5 | OpenAI Codex CLI |
 | **Gödel** | v0.2/v0.3 iterations — DSD pattern + WK JSON-RPC port | Gemini 3.5 Flash | Antigravity CLI 1.0.0 |
 | **Cody Turing** | Repo scaffolding, GitHub/auth ops, code review, verify-by-artifact discipline | Claude Opus 4.7 (1M context) | Claude Code CLI |
 | **DeepSeek (MA5)** | `bridge.ts` WK JSON-RPC protocol port from production server | DeepSeek V4 Flash | AtomCode |
