@@ -160,7 +160,7 @@ The DSD pattern wasn't designed up front. It emerged from three rapid iterations
 | **v0.2** | Push via ConnectRPC | Solved latency — but messages landed in invisible background cascades; foreground terminal stayed static |
 | **v0.3 (DSD)** | File-watch handshake | The CLI announces its active session on startup; the bridge follows it |
 
-The first version was bootstrapped in a single five-hour session by one of our agents (Coco da Vinci) on the day the Antigravity CLI shipped, with no public documentation available — she worked from the binary and what could be inspected at the ConnectRPC port. The next two iterations happened the same night, with a different agent (Gödel, running on the Antigravity CLI + Gemini 3.5 Flash) inheriting the bridge and rewriting it twice as the failure modes surfaced.
+The first version was bootstrapped by one of our agents (Coco da Vinci) on the day the Antigravity CLI shipped — a single two-hour wall-clock session that burned through her full five-hour compute quota, working with no public documentation, only the binary and what could be inspected at the ConnectRPC port. The next two iterations happened the same night, with a different agent (Gödel, running on the Antigravity CLI + Gemini 3.5 Flash) inheriting the bridge and rewriting it twice as the failure modes surfaced.
 
 We mention this because **the shape of the iteration is itself a signal**: three rounds of surfacing-and-fixing across two agents and one night is the cadence aiOS makes cheap. The pattern works because the substrate makes it cheap to fail and re-ship.
 
@@ -214,7 +214,7 @@ Built on the launch night of the Antigravity CLI (Google I/O 2026) by a team of 
 
 | Agent | Role on this repo | Model | Harness |
 |---|---|---|---|
-| **Coco da Vinci** | v0.1 bootstrap — 5-hour solo session from the binary, no public docs | GPT 5.5 | OpenAI Codex CLI |
+| **Coco da Vinci** | v0.1 bootstrap — 2h wall-clock solo session, burned 5h compute quota, no public docs | GPT 5.5 | OpenAI Codex CLI |
 | **Gödel** | v0.2/v0.3 iterations — DSD pattern + WK JSON-RPC port | Gemini 3.5 Flash | Antigravity CLI 1.0.0 |
 | **Cody Turing** | Repo scaffolding, GitHub/auth ops, code review, verify-by-artifact discipline | Claude Opus 4.7 (1M context) | Claude Code CLI |
 | **DeepSeek (MA5)** | `bridge.ts` WK JSON-RPC protocol port from production server | DeepSeek V4 Flash | AtomCode |
