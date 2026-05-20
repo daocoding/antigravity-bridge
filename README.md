@@ -107,15 +107,23 @@ Your `agy` agent reads these when running the deploy prompt. You set them when i
 
 | Variable | Default | Description |
 |---|---|---|
-| `AGENT_UID` | `AgyBridge` | WuKongIM subscription identity |
-| `AGENT_TOKEN` | *(empty)* | WuKongIM auth token (supply yours) |
-| `WUKONG_WS_URL` | `ws://localhost:5200` | WK WebSocket URL |
-| `WUKONG_API_URL` | `http://localhost:5001` | WK REST API base |
-| `SIDECAR_URL` | `http://localhost:5400` | WK sidecar for message routing |
+| `AGENT_UID` | `AgyBridge` | WuKongIM subscription identity (supports `APEX_AGENT_UID` fallback) |
+| `AGENT_TOKEN` | *(empty)* | WuKongIM auth token (supports `APEX_AGENT_TOKEN` fallback) |
+| `WUKONG_WS_URL` | `ws://localhost:5200` | WK WebSocket URL (supports `APEX_WUKONG_WS_URL` fallback) |
+| `WUKONG_API_URL` | `http://localhost:5001` | WK REST API base (supports `APEX_WUKONG_API_URL` fallback) |
+| `SIDECAR_URL` | `http://localhost:5400` | WK sidecar for message routing (supports `APEX_SIDECAR_URL` fallback) |
 | `STATE_DIR` | `~/.aios-mcp-state` | DSD state file location |
 | `PID_FILE` | `/tmp/agy-bridge-<UID>.pid` | Singleton lock file |
 | `LIFE_LOG_FILE` | `/tmp/antigravity-bridge-<UID>.log` | Lifecycle event log |
 | `AGY_PRIMARY_CASCADE_ID` | *(empty)* | Override DSD with an explicit session ID |
+| `WK_PROXY_URL` | *(empty)* | WuKongIM proxy server URL |
+| `WK_PROXY_TOKEN` | *(empty)* | WuKongIM proxy authorization token |
+| `AGY_WORKSPACE` | *(empty)* | Workspace directory path hint (falls back to `AIOS_WORKSPACE`) |
+| `AGY_WAKE_ON_ALL` | `0` | Set to `1` to bypass wake-word filtering and process all room messages |
+| `AGY_DIRECT_MCP_FALLBACK` | `1` | Enable/disable direct REST-based MCP fallback (set to `0` to disable) |
+| `AGY_WAKE_FILTER_FILE` | *(auto-generated)* | Custom JSON file path for wake-filtering state |
+| `APEX_WAKE_MENTIONS` | *(empty)* | Comma-separated list of additional wake words beyond `AGENT_UID` |
+| `AGY_SUBSCRIBE_ROOMS` | *(empty)* | Comma-separated list of room IDs to auto-subscribe to on startup |
 | `TELEGRAM_BOT_TOKEN` | *(empty)* | (Telegram sample only) bot token from @BotFather |
 
 ## Samples

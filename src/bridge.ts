@@ -390,7 +390,12 @@ const DEFAULT_WAKE_FILTER: WakeFilter = {
   wake_on_all: true,
   dm_wakes: true,
   require_mention: false,
-  mentions: [AGENT_UID],
+  mentions: [
+    AGENT_UID,
+    ...(process.env.APEX_WAKE_MENTIONS
+      ? process.env.APEX_WAKE_MENTIONS.split(",").map((s) => s.trim()).filter(Boolean)
+      : []),
+  ],
   contains: [],
   regex: [],
   ignored_from_uids: [AGENT_UID],
