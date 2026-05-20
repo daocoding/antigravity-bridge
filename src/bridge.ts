@@ -390,7 +390,7 @@ const DEFAULT_WAKE_FILTER: WakeFilter = {
   wake_on_all: true,
   dm_wakes: true,
   require_mention: false,
-  mentions: [AGENT_UID, "Gödel", "Godel"],
+  mentions: [AGENT_UID],
   contains: [],
   regex: [],
   ignored_from_uids: [AGENT_UID],
