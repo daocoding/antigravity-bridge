@@ -166,9 +166,9 @@ We mention this because **the shape of the iteration is itself a signal**: three
 
 ## Known Limitations
 
-This is a v0.3 reference implementation, not production-hardened software:
+This is a v0.4 resilience-focused reference implementation:
 
-- **Not yet integration-tested end-to-end in its final form.** The DSD pattern and the WK JSON-RPC subscription logic have each been validated in earlier iterations and code-reviewed independently, but the final `bridge.ts` (which combines them) has not been run as a single integrated process against a live Antigravity CLI + WuKongIM server. v0.4 priority.
+- **Environment-resolution caveats.** v0.4 integrates and composition-tests the resilience features (Dynamic Session Discovery, state catch-up, wake-filtering, REST direct MCP fallback, and auto-subscriptions) used internally inside Apex Learn's aiOS substrate. However, first-time external deployments in clean environments have not been fully integration-tested; first-time external users may surface environment-resolution edge cases. Please file issues.
 - **Single-host assumption.** The DSD state file is local. Multi-host fan-out is unsolved here.
 - **No authn/authz on the bridge process.** Anyone with local read access to the state file can target the active session. Treat the bridge process as in-trust.
 - **WK token in plaintext env.** `AGENT_TOKEN` is read from process env. For production, use a secrets manager.

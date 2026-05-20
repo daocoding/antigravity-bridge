@@ -1,6 +1,6 @@
 {
   "name": "antigravity-bridge",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Lightweight message bridge connecting WuKongIM chat substrate to the Antigravity CLI via Dynamic Session Discovery (DSD).",
   "type": "module",
   "scripts": {
