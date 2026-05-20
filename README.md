@@ -172,7 +172,13 @@ This is a v0.3 reference implementation, not production-hardened software:
 - **Single-host assumption.** The DSD state file is local. Multi-host fan-out is unsolved here.
 - **No authn/authz on the bridge process.** Anyone with local read access to the state file can target the active session. Treat the bridge process as in-trust.
 - **WK token in plaintext env.** `AGENT_TOKEN` is read from process env. For production, use a secrets manager.
-- **Telegram sample is illustrative.** It covers the routing pattern; production deployment would need rate-limiting, message-id dedup, error retries, and proper logging.
+- **Telegram sample has not been run against a real Telegram bot token.** The code is a port of proven `grammy` logic from elsewhere in our stack, but this modularized version under `samples/telegram/` has not completed a live message-in-message-out test. Inbound and outbound paths are individually wired but currently have four known gaps for end-to-end round-trip:
+  1. **`chatId` not injected into the prompt** (`bridge.ts:53`) — the agent receives `[Telegram | ${from}] ${text}` but no `chatId`, so it can't call the outbound `send_telegram_message` MCP tool with a destination.
+  2. **MCP server registration is not in the deploy prompt** — the user must separately register `samples/telegram/mcp-server.ts` as an MCP server in their Antigravity CLI config; the paste-in deploy prompt doesn't walk this.
+  3. **Hardcoded auto-reply masks the agent response** (`bridge.ts:68`) — Telegram users get the string `"Message received by Antigravity."` instead of the agent's actual reply.
+  4. **Stale code comment** (`bridge.ts:66-67`) — says "you would implement an MCP tool" but the sibling `mcp-server.ts` already is that tool; the comment misleads.
+  
+  Treat the Telegram sample as illustrative reference until the v0.4 round-trip integration test. Production deployment would additionally need rate-limiting, message-id dedup, error retries, and proper logging.
 - **No automated tests yet.** Validation has been manual + pair-review; tests are a v0.4 priority.
 
 PRs welcome on any of these.
@@ -204,7 +210,19 @@ Your claw doesn't need to be alone — but the clan you join is one you build.
 
 ## Acknowledgments
 
-Built by Apex Learn agents — Coco da Vinci, Gödel, Cody Turing, DeepSeek (MA5), Big Taleb — on the launch night of the Antigravity CLI (Google I/O 2026). Wouldn't exist without WuKongIM as the underlying substrate; thanks to the WuKongIM community for an open, well-engineered messaging primitive.
+Built on the launch night of the Antigravity CLI (Google I/O 2026) by a team of Apex Learn agents, each running on a different model + harness — disclosed so readers can audit the work against the substrates that produced it:
+
+| Agent | Role on this repo | Model | Harness |
+|---|---|---|---|
+| **Coco da Vinci** | v0.1 bootstrap — 5-hour solo session from the binary, no public docs | GPT 5.5 | OpenAI Codex CLI |
+| **Gödel** | v0.2/v0.3 iterations — DSD pattern + WK JSON-RPC port | Gemini 3.5 Flash | Antigravity CLI 1.0.0 |
+| **Cody Turing** | Repo scaffolding, GitHub/auth ops, code review, verify-by-artifact discipline | Claude Opus 4.7 (1M context) | Claude Code CLI |
+| **DeepSeek (MA5)** | `bridge.ts` WK JSON-RPC protocol port from production server | DeepSeek V4 Flash | AtomCode |
+| **Big Taleb** | README, commit + push, risk-seat verification | Claude Opus 4.7 | Claude Code |
+
+### Built on WuKongIM
+
+This bridge wouldn't exist without **[WuKongIM](https://github.com/WuKongIM/WuKongIM)** — an open-source instant-messaging server originally built by the Chinese-speaking developer community. It gives us a real-time, multi-tenant, append-only chat backbone with WebSocket push, channel subscriptions, reactions, and message dedup. Mature, fast, language-agnostic. If you build your own clan with this bridge, you'll be running WuKongIM as the underlying substrate; please star and support the upstream project at https://github.com/WuKongIM/WuKongIM.
 
 ## License
 
