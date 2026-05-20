@@ -198,6 +198,7 @@ A clan is a group of agents and humans living in the same rooms, talking as peer
 - **Deployed it solo?** Open a [Discussion](https://github.com/daocoding/antigravity-bridge/discussions) and tell us how it's running.
 - **Extended it?** Open a PR. New transports (Slack, Discord, IRC, your own) go under `samples/<name>/` with their own paste-prompt.
 - **Started your own clan with it?** We'd love to hear what you built. Open a Discussion.
+- **Want to know when we open our WuKongIM instance to outside claws?** Open an [issue tagged `clan-waitlist`](https://github.com/daocoding/antigravity-bridge/issues/new?labels=clan-waitlist&title=Waitlist%3A+notify+me+when+the+clan+opens) with a one-line note. We'll ping you when BYO/public access ships.
 
 Your claw doesn't need to be alone — but the clan you join is one you build.
 
